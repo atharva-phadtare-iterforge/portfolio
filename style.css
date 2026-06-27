@@ -1,0 +1,270 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #fbfbfb;
+}
+
+/* ----------- HEADER ------------ */
+
+header {
+    display: flex;
+    
+    justify-content: space-between;
+    padding: 15px 30px;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+.logo {
+    color: #8800ff;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    justify-content: space-around;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #9b9b9b;
+    font-size: 18px;
+}
+
+nav a:hover {
+    color:#8800ff
+}
+
+.hire-me {
+    background-color: #8800ff;
+    color: #fff;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+}
+
+/* ----------- HERO ------------ */
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    gap: 20%;
+    border-bottom: 1px solid #aaaaaa;
+}
+
+.hero-info {
+    float: 1;
+}
+
+
+.work-badge {
+    color: #8800ff;
+    background-color: #ead3ff;
+    font-size: 12px;
+    padding: 6px 8px;
+    margin: 8px 0px;
+    border-radius: 12px;
+}
+
+.hero-title {
+    font-size: 42px;
+    color: #1f1f1f;
+    padding: 6px 0px;
+}
+
+.hero-description {
+    color: #5c5c5c;
+    padding: 10px 0px;
+}
+
+.hero-btn {
+    display: flex;
+    justify-content: left;
+    gap: 10px;
+    padding: 10px 0px;
+}
+
+.hero-btn-wbg {
+    padding: 10px 15px;
+    background-color: #8800ff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+
+}
+
+.hero-btn-wobg {
+    padding: 10px 15px;
+    border: 1px solid #8800ff;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.hero-icon {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    flex: 1;
+}
+
+.icon-circle {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 100px;
+    font-weight: bold;
+    background-color: #ead3ff;
+    color: #8800ff;
+}
+
+/* ----------- PROJECTS ------------ */
+
+.pro {
+    padding: 15px 30px;
+    border-bottom: 1px solid #aaaaaa;
+}
+
+.pro-headline {
+    font-size: 24px;
+    color:#1f1f1f;
+}
+
+.pro-des {
+    color: #5c5c5c;
+    padding: 10px 0px;
+}
+
+.pro-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.pro-card {
+    border: 1px solid #808080;
+    border-radius: 20px;
+    overflow: hidden;
+
+}
+
+.pro-card-up {
+    height: 90px;
+    background-color: #dfbbff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.pro-card-down {
+    padding: 20px;
+   
+}
+
+.pro-card-down h4 p{
+    margin-bottom: 8px;
+   
+}
+
+.pro-icons {
+    height: 30px;
+    width: 30px;
+    opacity: 7;
+    background-color: #dfbbff;
+}
+
+.pro-tag-flex {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+    padding-top: 8px;
+}
+
+.pro-tag {
+    background-color: #efefef;
+    border-radius: 15px;
+    padding: 4px 8px;
+}
+
+/* ----------- SKILLS ------------ */
+
+.skills {
+    padding: 15px 30px;
+    border-bottom: 1px solid #aaaaaa;
+}
+
+.skills-headline {
+    font-size: 24px;
+    color:#1f1f1f;
+}
+
+.skills-des {
+    color: #5c5c5c;
+    padding: 10px 0px;
+}
+
+.skill {
+    margin-bottom: 28px;
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.progress {
+    width: 100%;
+    height: 5px;
+    background-color: #ececec;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #2952ff;
+    border-radius: 10px;
+}
+
+.html {
+    width: 90%;
+}
+
+.css {
+    width: 85%;
+}
+
+.javascript {
+    width: 75%;
+}
+
+.angular {
+    width: 60%;
+}
+
+.react {
+    width: 55%;
+}
+
+.git {
+    width: 70%;
+}
