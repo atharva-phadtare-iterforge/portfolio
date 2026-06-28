@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atharva Phadtare</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -12,16 +15,16 @@
     <nav>
         <ul>
             <li>
-                <a href="#">Home</a>
+                <a href="#home">Home</a>
             </li>
             <li>
-                <a href="#">Projects</a>
+                <a href="#project">Projects</a>
             </li>
             <li>
-                <a href="#">Skills</a>
+                <a href="#skills">Skills</a>
             </li>
             <li>
-                <a href="#">Contact</a>
+                <a href="#contact">Contact</a>
             </li>
         </ul>
     </nav>
@@ -30,7 +33,7 @@
     </button>
     </header>
 
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="hero-info">
         <span class="work-badge">
             Available for work
@@ -48,7 +51,7 @@
             <div class="icon-circle">AP</div>
         </div>
     </section>
-    <section class="pro">
+    <section class="pro" id="project">
         <div class="pro-headline">Projects</div>
         <div class="pro-des">Things I've built during training</div>
         <div class="pro-container">
@@ -93,11 +96,16 @@
             </div>
         </div>
     </section>
-    <section class="skills">
+    <section class="skills" id="skills">
+
+        
         <div class="skills-headline">Skills</div>
         <div class="skills-des">Technologies I work with</div>
 
-        <h5>PROFICIENCY</h5>
+
+        <div class="skills-flex">
+        <div class="skills-left">
+        <h4 style="padding-bottom: 20px; color: #383838;">PROFICIENCY</h4>
         <div class="skill">
             <div class="skill-info">
                 <div class="left">
@@ -175,6 +183,84 @@
             <div class="progress-bar git"></div>
         </div>
         </div>
+
+        </div>
+        <div class="skills-right">
+        <h4 style="padding-bottom: 20px; color: #383838;">TOOLS & EXTRAS</h4>
+        <div class="tools-grid">
+        <div class="tools">
+            <img src="icons/icons8-visual-studio-code-2019-64.png" class="tools-icons vs"/>
+            <h6>VS Code</h6>
+        </div>
+        <div class="tools">
+            <img src="icons/github-icon.svg" class="tools-icons github"/>
+            <h6>GitHub</h6>
+        </div>
+        <div class="tools">
+            <img src="icons/browser-window-black-icon.svg"class="tools-icons chrome" />
+            <h6>Chrome</h6>
+        </div>
+        <div class="tools">
+            <img src="icons/Command Interface.svg"  class="tools-icons cli"/>
+            <h6>CLI</h6>
+
+        </div>
+        </div>
+        <h4 style="padding-bottom: 10px; color: #383838;">OTHER SKILLS</h4>
+        <div class="skills-other">
+            <div class="skills-other-flex">
+            <span class="vs-tag">Responsive Design</span>
+            <span class="chrome-tag">Accessibility</span>
+            <span class="cli-tag">REST API's</span>
+            <span class="github-tag">Git Flow</span>
+            </div>
+            <div class="skills-other-flex">
+                <span class="vs-tag">Flexbox</span>
+                <span class="chrome-tag">CSS Grid</span>
+                <span class="cli-tag">localStorage</span>
+            </div>
+        </div>
+        </div>
+        </div>
     </section>
+    <section class="contact" id="contact">
+        <div class="contact-headline">Contact</div>
+        <div class="contact-des">Let's Connect</div>
+        <div class="contact-flex">
+        <div>
+
+
+        <div class="contact-opts">
+            <img src="icons/icons8-mail-32.png" class="contact-icons"/>
+            <p>atharva@gmail.com</p>
+        </div>
+        <div class="contact-opts">
+            <img src="icons/github-icon.svg" class="contact-icons" />
+            <p>github.com/atharvaphadtare</p>
+        </div>
+        <div class="contact-opts">
+            <img src="icons/icons8-location-24.png" class="contact-icons" />
+            <div>Mumbai,India</div>
+        </div>
+        </div>
+        <div class="contact-form">
+            <form>
+                <input type="text" id="fname" name="fname" placeholder="First Name" class="form-input fname">
+                <input type="text" id="lname" name="lname" placeholder="Last Name" class="form-input fname">
+                <input type="text" id="subject" name="subject" placeholder="Subject" class="form-input"><br>
+                <textarea type="text" id="message" name="message" placeholder="Message" rows="4" class="form-input"></textarea>
+                <button type="submit" class="form-button">Send Message</button>
+            </form>
+        </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <p>&copy; 2026 Atharva Phadtare</p>
+        <div class="social">
+            <a href="https://github.com/atharva-phadtare-iterforge">GitHub</a>
+            <a>Linkedin</a>
+            <a>Twitter</a>
+        </div>
+    </footer>
 </body>
 </html>
