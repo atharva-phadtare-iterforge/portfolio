@@ -72,7 +72,7 @@ nav a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
+    padding: 60px 30px;
     gap: 20%;
     border-bottom: 1px solid #aaaaaa;
 }
@@ -152,7 +152,7 @@ nav a:hover {
 /* --------------------------------- */
 
 .pro {
-    padding: 15px 30px;
+    padding: 60px 30px;
     border-bottom: 1px solid #aaaaaa;
 }
 
@@ -202,7 +202,6 @@ nav a:hover {
 .pro-icons {
     height: 30px;
     width: 30px;
-    opacity: 7;
     background-color: #dfbbff;
 }
 
@@ -226,7 +225,7 @@ nav a:hover {
 
 .skills {
     width: 100%;
-    padding: 15px 30px;
+    padding: 60px 30px;
     border-bottom: 1px solid #aaaaaa;
     background-color: #eeeeee;
 }
@@ -400,7 +399,7 @@ nav a:hover {
 
 .contact {
     width: 100%;
-    padding: 15px 30px;
+    padding: 45px 30px;
     border-bottom: 1px solid #aaaaaa;
 }
 
@@ -483,6 +482,10 @@ nav a:hover {
     justify-content: space-between;
     align-items: center;
 
+}
+
+textarea {
+    resize: none;
 }
 
 .social {
