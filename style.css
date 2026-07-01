@@ -2,17 +2,32 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #fbfbfb;
 }
 
+body {
+    font-family: Inter, 'sans-serif';
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ------------------------------- */
 /* ----------- HEADER ------------ */
+/* ------------------------------- */
 
 header {
     display: flex;
     
     justify-content: space-between;
-    padding: 15px 30px;
+    padding: 10px 30px;
+    padding-top: 20px;
     border-bottom: 1px solid #d3d3d3;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #fff;
 }
 
 .logo {
@@ -33,6 +48,8 @@ nav a {
     text-decoration: none;
     color: #9b9b9b;
     font-size: 18px;
+    align-items: center;
+    justify-items: center;
 }
 
 nav a:hover {
@@ -47,13 +64,15 @@ nav a:hover {
     border-radius: 6px;
 }
 
+/* ----------------------------- */
 /* ----------- HERO ------------ */
+/* ----------------------------- */
 
 .hero {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
+    padding: 60px 30px;
     gap: 20%;
     border-bottom: 1px solid #aaaaaa;
 }
@@ -81,6 +100,7 @@ nav a:hover {
 .hero-description {
     color: #5c5c5c;
     padding: 10px 0px;
+    font-size: 16px;
 }
 
 .hero-btn {
@@ -114,28 +134,31 @@ nav a:hover {
 }
 
 .icon-circle {
-    width: 250px;
-    height: 250px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    font-size: 100px;
+    font-size: 65px;
     font-weight: bold;
     background-color: #ead3ff;
     color: #8800ff;
 }
 
+/* --------------------------------- */
 /* ----------- PROJECTS ------------ */
+/* --------------------------------- */
 
 .pro {
-    padding: 15px 30px;
+    padding: 60px 30px;
     border-bottom: 1px solid #aaaaaa;
 }
 
 .pro-headline {
     font-size: 24px;
+    font-weight: bold;
     color:#1f1f1f;
 }
 
@@ -179,7 +202,6 @@ nav a:hover {
 .pro-icons {
     height: 30px;
     width: 30px;
-    opacity: 7;
     background-color: #dfbbff;
 }
 
@@ -197,15 +219,21 @@ nav a:hover {
     padding: 4px 8px;
 }
 
+/* ------------------------------- */
 /* ----------- SKILLS ------------ */
+/* ------------------------------- */
 
 .skills {
-    padding: 15px 30px;
+    width: 100%;
+    padding: 60px 30px;
     border-bottom: 1px solid #aaaaaa;
+    background-color: #eeeeee;
 }
+
 
 .skills-headline {
     font-size: 24px;
+    font-weight: bold;
     color:#1f1f1f;
 }
 
@@ -234,14 +262,14 @@ nav a:hover {
 .progress {
     width: 100%;
     height: 5px;
-    background-color: #ececec;
+    background-color: #949494;
     border-radius: 10px;
     overflow: hidden;
 }
 
 .progress-bar {
     height: 100%;
-    background-color: #2952ff;
+    background-color: #8800ff;
     border-radius: 10px;
 }
 
@@ -267,4 +295,200 @@ nav a:hover {
 
 .git {
     width: 70%;
+}
+
+.skills-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    
+}
+
+.skills-left {
+    width: 50%;
+}
+
+.skills-right {
+    width: 50%;
+    margin-top: -120px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    padding-bottom: 30px;
+}
+
+.tools {
+    justify-content: center;
+    align-items: center;
+    padding: 20px 50px;
+    border: 1px solid #9b9b9b;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.tools-icons {
+    width: 50px;
+    height: 50px;
+    color: #000;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.vs {
+    background-color: #dfbbff;
+}
+
+.vs-tag {
+    background-color: #dfbbff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: #6a529f;
+}
+
+.github {
+    background-color: #d3d3d3;
+}
+
+.github-tag {
+    background-color: #d3d3d3;
+    padding: 5px 10px;
+    border-radius: 20px;
+    color:#898782;
+}
+
+.chrome {
+    background-color: #e1f5ee;
+    color: #3e796c;
+}
+
+.chrome-tag {
+    background-color: #e1f5ee;
+    color: #3e796c;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.cli {
+    background-color: #faeeda;
+}
+
+.cli-tag {
+    background-color: #faeeda;
+    color: #70533f;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.tools h6 {
+    align-items: center;
+    text-align: center;
+    font-size: 12px;
+}
+
+.skills-other-flex {
+    margin: 20px;
+}
+
+/* -------------------------------- */
+/* ----------- CONTACT ------------ */
+/* -------------------------------- */
+
+.contact {
+    width: 100%;
+    padding: 45px 30px;
+    border-bottom: 1px solid #aaaaaa;
+}
+
+
+.contact-headline {
+    font-size: 24px;
+    font-weight: bold;
+    color:#1f1f1f;
+}
+
+.contact-des {
+    color: #5c5c5c;
+    padding: 10px 0px;
+}
+
+.contact-opts {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    margin: 10px;
+    margin-left: 0px;
+    width: 50%;
+}
+
+.contact-icons {
+    width: 30px;
+    height: 30px;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #ead3ff;
+    color: #6a529f;
+    margin-right: 10px;
+}
+
+.contact-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+    gap: 40px;
+}
+
+.contact-form {
+    width: 50%;
+
+}
+
+.form-input {
+    width: 96%;
+    padding: 10px 8px;
+    border: 1px solid #aaaaaa;
+    margin: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+}
+
+.fname {
+    width: 46%;
+}
+
+.form-button {
+    width: 96%;
+    padding: 10px 8px;
+    margin: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #8800ff;
+    border: none;
+}
+
+/* -------------------------------- */
+/* ----------- CONTACT ------------ */
+/* -------------------------------- */
+
+.footer {
+    width: 100%;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+textarea {
+    resize: none;
+}
+
+.social {
+    display: flex;
+    gap: 20px;
 }
