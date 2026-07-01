@@ -77,11 +77,6 @@ nav a:hover {
     border-bottom: 1px solid #aaaaaa;
 }
 
-.hero-info {
-    float: 1;
-}
-
-
 .work-badge {
     color: #8800ff;
     background-color: #ead3ff;
@@ -145,6 +140,22 @@ nav a:hover {
     font-weight: bold;
     background-color: #ead3ff;
     color: #8800ff;
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+    font-size: 24px;
+    color: #1f1f1f;
+    padding: 6px 0px;
+    }
+
+    .hero {
+        flex-direction: column;
+    }
+
+    .hero-icon {
+        padding-top: 20px;
+    }
 }
 
 /* --------------------------------- */
@@ -217,6 +228,12 @@ nav a:hover {
     background-color: #efefef;
     border-radius: 15px;
     padding: 4px 8px;
+}
+
+@media (max-width: 768px) {
+    .pro-container {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ------------------------------- */
@@ -393,6 +410,34 @@ nav a:hover {
     margin: 20px;
 }
 
+@media (max-width: 768px) {
+    .skills-flex {
+        flex-direction: column;
+    }
+
+    .skills-left {
+        width: 100%;
+    }
+
+    .skills-right {
+        width: 100%;
+        padding-top: 60px;
+    }
+
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tools {
+        margin: 5px 0px;
+    }
+
+    .skils-other-flex {
+        margin: 50px 0px;
+    }
+
+}
+
 /* -------------------------------- */
 /* ----------- CONTACT ------------ */
 /* -------------------------------- */
@@ -469,6 +514,20 @@ nav a:hover {
     color: #fff;
     background-color: #8800ff;
     border: none;
+}
+
+@media (max-width: 768px) {
+    .contact-flex {
+        flex-direction: column;
+    }
+
+    .contact-form {
+        width: 100%;
+    }
+
+    .fname {
+        width: 43%;
+    }
 }
 
 /* -------------------------------- */
