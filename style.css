@@ -540,6 +540,34 @@ header {
 
 }
 
+@media screen and (max-width: 1024px) {
+    .tools {
+        margin: 2px;
+        padding: 8px 20px;
+    }
+
+    .skills-other-flex {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    .tools {
+        margin: 2px;
+        padding: 8px 20px;
+    }
+
+    .skills-other-flex {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+    }
+}
+
 /* -------------------------------- */
 /* ----------- CONTACT ------------ */
 /* -------------------------------- */
@@ -628,7 +656,13 @@ header {
     }
 
     .fname {
-        width: 43%;
+        width: 96%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .fname {
+        width: 96%;
     }
 }
 
