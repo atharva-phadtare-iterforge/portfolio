@@ -53,6 +53,7 @@
 .input-group input,
 .input-group textarea {
     width: 100%;
+    height: 55px;
     padding: 16px 15px;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -75,23 +76,26 @@
     transform: translateY(-50%);
     background: #fff;
     padding: 0 5px;
-    color: #777;
     transition: 0.25s;
     pointer-events: none;
 }
 
 
 .input-group input:focus + label,
-.input-group textarea:focus + label {
+.input-group textarea:focus + label,
+.input-group input.active + label,
+.input-group textarea.active + label {
     top: 0px;
+    transform: translateY(-50%);
     font-size: 12px;
     color: #000;
 }
 
-.date-label {
-    top: -10px !important;
+#birthDate:focus + label,
+#birthDate.active + label {
+    top: 0;
+    transform: translateY(-50%);
     font-size: 12px;
-    color:#000;
 }
 
 
@@ -151,6 +155,12 @@ textarea:disabled {
     font-size: 13px;
 }
 
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
 .submit-btn {
     width: 100%;
     padding: 14px;
@@ -160,6 +170,21 @@ textarea:disabled {
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s;
+    background-color: #00c954;
+    color: #fff;
+}
+
+.cancel-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: #ff2020;
+    color: #fff;
 }
 
 input:focus,

@@ -41,10 +41,10 @@
 
                     <div class="radio-group">
                         <label class="radio-label" >
-                        <input type="radio" name="gender" value="Male" >Male
+                        <input type="radio" id="male" name="gender" value="Male" >Male
                         </label>
                         <label class="radio-label">
-                        <input type="radio" name="gender" value="Female">Female
+                        <input type="radio" id="female" name="gender" value="Female">Female
                         </label>
                     </div>
 
@@ -78,23 +78,29 @@
                     Add About Me
                 </label>
 
-                <div class="input-group">    
-                    <textarea id="aboutMe" rows="4" maxlength="1024" placeholder=" " disabled></textarea>
+                <div class="input-group aboutCheck">    
+                    <div id="aboutSection">
+                    <textarea id="aboutMe" rows="8" maxlength="1024" placeholder=" "></textarea>
                     <label for="aboutMe"></label>
-
+                    
                     <div class="about-footer">
-
-                    <small class="error" id="aboutError"></small>
-                    <small id="characterCount">0 / 1024</small>
+                        
+                        <small class="error" id="aboutError"></small>
+                        <small id="characterCount">0 / 1024</small>
+                    </div>
                 </div>
             </div>
                 </div>
-
+                <div class="button-group">
                 <button type="submit" class="submit-btn">Register</button>
+                <button type="reset" class="cancel-btn">Cancel</button>
+                </div>
         </form>
 
         </div>
     </div>
+
+    <script src="js/student-form.js"></script>
     
 </body>
 </html>
