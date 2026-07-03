@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Form</title>
+
+    <link rel="stylesheet" href="css/student-form.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <h2>Student Registration Form</h2>
+            <p>Please fill in the form</p>
+            <form id="student-form">
+                <div class="input-group">
+                    <input type="text" id="firstName" autocomplete="off" placeholder=" " required>
+                    <label for="firstName">First Name<span>*</span></label>
+
+                    <small class="error" id="firstNameError"></small>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="middleName"  autocomplete="off" placeholder=" " required>
+                    <label for="middleName">Middle Name<span>*</span></label>
+
+                    <small class="error" id="middleNameError"></small>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="lastName" autocomplete="off" placeholder=" " required>
+                    <label for="lastName">Last Name<span>*</span></label>
+
+                    <small class="error" id="lastNameError"></small>
+                </div>
+
+                <div class="gender-box">
+        
+                    <legend class="gender-title">Gender<span>*</span></legend>
+
+                    <div class="radio-group">
+                        <label class="radio-label" >
+                        <input type="radio" name="gender" value="Male" >Male
+                        </label>
+                        <label class="radio-label">
+                        <input type="radio" name="gender" value="Female">Female
+                        </label>
+                    </div>
+
+                    <small class="error" id="genderError"></small>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" id="email" autocomplete="off" placeholder=" " required>
+                    <label for="email">Email<span>*</span></label>
+
+                    <small class="error" id="emailError" ></small>
+                </div>
+
+                <div class="input-group">
+                    <input type="tel" id="mobile" autocomplete="off" placeholder=" " required>
+                    <label for="mobile">Mobile Number<span>*</span></label>
+
+                    <small class="error" id="mobileError"></small>
+                </div>
+
+                <div class="input-group">
+                    <input type="date" id="birthDate" autocomplete="off" placeholder=" " required>
+                    <label class="date-label" for="birthDate">Birth Date<span>*</span></label>
+
+                    <small class="error" id="birthDateError"></small>
+                </div>
+
+                <div class="about-toggle">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="enableAboutMe">
+                    Add About Me
+                </label>
+
+                <div class="input-group">    
+                    <textarea id="aboutMe" rows="4" maxlength="1024" placeholder=" " disabled></textarea>
+                    <label for="aboutMe"></label>
+
+                    <div class="about-footer">
+
+                    <small class="error" id="aboutError"></small>
+                    <small id="characterCount">0 / 1024</small>
+                </div>
+            </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Register</button>
+        </form>
+
+        </div>
+    </div>
+    
+</body>
+</html>
