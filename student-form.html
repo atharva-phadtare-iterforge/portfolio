@@ -7,10 +7,10 @@
 
     <link rel="stylesheet" href="css/student-form.css">
 </head>
-<body>
+<body onclick="readAll()">
 
     <div class="container">
-        <div class="card">
+        <div class="form-container">
             <h2>Student Registration Form</h2>
             <p>Please fill in the form</p>
             <form id="student-form">
@@ -96,7 +96,29 @@
                 <button type="reset" class="cancel-btn">Cancel</button>
                 </div>
         </form>
+    </div>
+        <div class="add-button">
+        <button class="add-btn" onclick="create()">Add Student</button>
+        </div>
 
+        <div class="table-container">
+            <table>
+                <thead>
+                    <th>Sr.</th>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Email ID</th>
+                    <th>Mobile Number</th>
+                    <th>DOB</th>
+                    <th>About Me</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody class="data-table">
+
+                </tbody>
+            </table>
         </div>
     </div>
 
