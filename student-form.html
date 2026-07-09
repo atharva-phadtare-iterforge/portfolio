@@ -13,23 +13,23 @@
         <div class="form-container">
             <h2>Student Registration Form</h2>
             <p>Please fill in the form</p>
-            <form id="student-form">
+            <form id="student-form" onsubmit="submitForm(event)" onreset="resetForm()">
                 <div class="input-group">
-                    <input type="text" id="firstName" autocomplete="off" placeholder=" ">
+                    <input type="text" id="firstName" autocomplete="off" placeholder=" " onblur="validateFirstName()" oninput="capitalize(this)">
                     <label for="firstName">First Name<span>*</span></label>
 
                     <small class="error" id="firstNameError"></small>
                 </div>
 
                 <div class="input-group">
-                    <input type="text" id="middleName"  autocomplete="off" placeholder=" " >
+                    <input type="text" id="middleName"  autocomplete="off" placeholder=" " onblur="validateMiddleName()" oninput="capitalize(this)">
                     <label for="middleName">Middle Name<span>*</span></label>
 
                     <small class="error" id="middleNameError"></small>
                 </div>
 
                 <div class="input-group">
-                    <input type="text" id="lastName" autocomplete="off" placeholder=" " >
+                    <input type="text" id="lastName" autocomplete="off" placeholder=" " onblur="validateLastName()" oninput="capitalize(this)">
                     <label for="lastName">Last Name<span>*</span></label>
 
                     <small class="error" id="lastNameError"></small>
@@ -41,10 +41,10 @@
 
                     <div class="radio-group">
                         <label class="radio-label" >
-                        <input type="radio" id="male" name="gender" value="Male" >Male
+                        <input type="radio" id="male" name="gender" value="Male" onchange="validateGender()">Male
                         </label>
                         <label class="radio-label">
-                        <input type="radio" id="female" name="gender" value="Female">Female
+                        <input type="radio" id="female" name="gender" value="Female" onchange="validateGender()">Female
                         </label>
                     </div>
 
@@ -52,21 +52,21 @@
                 </div>
 
                 <div class="input-group">
-                    <input type="email" id="email" autocomplete="off" placeholder=" ">
+                    <input type="email" id="email" autocomplete="off" placeholder=" " onblur="validateEmail()" >
                     <label for="email">Email<span>*</span></label>
 
                     <small class="error" id="emailError" ></small>
                 </div>
 
                 <div class="input-group">
-                    <input type="tel" id="mobile" autocomplete="off" placeholder=" " maxlength="10" pattern="[0-9]{10}" >
+                    <input type="tel" id="mobile" autocomplete="off" placeholder=" " maxlength="10" pattern="[0-9]{10}" onblur="validateMobile()">
                     <label for="mobile">Mobile Number<span>*</span></label>
 
                     <small class="error" id="mobileError"></small>
                 </div>
 
                 <div class="input-group">
-                    <input type="date" id="birthDate" autocomplete="off" placeholder=" " >
+                    <input type="date" id="birthDate" autocomplete="off" placeholder=" " onchange="validateBirthDate()">
                     <label class="date-label" for="birthDate">Birth Date<span>*</span></label>
 
                     <small class="error" id="birthDateError"></small>
@@ -74,13 +74,13 @@
 
                 <div class="about-toggle">
                 <label class="checkbox-label">
-                    <input type="checkbox" id="enableAboutMe">
+                    <input type="checkbox" id="enableAboutMe" onchange="toggleAboutSection()" >
                     Add About Me
                 </label>
 
                 <div class="input-group aboutCheck">    
                     <div id="aboutSection">
-                    <textarea id="aboutMe" rows="8" maxlength="1024" placeholder=" "></textarea>
+                    <textarea id="aboutMe" rows="8" maxlength="1024" placeholder=" "onblur="validateAboutMe()" oninput="updateCharacterCount()"></textarea>
                     <label for="aboutMe"></label>
                     
                     <div class="about-footer">

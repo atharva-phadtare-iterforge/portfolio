@@ -119,7 +119,7 @@ function validateAboutMe() {
 }
 
 //-------SUBMIT-------//
-form.addEventListener("submit", function(e) {
+function submitForm(e) {
     e.preventDefault();
 
     let valid = true;
@@ -139,23 +139,19 @@ form.addEventListener("submit", function(e) {
         form.reset();
         
     }
-})
+}
 
-
-document.querySelectorAll("#firstName, #middleName, #lastName").forEach(function(input){
-
-    input.addEventListener("input", function(){
-
-        let value = this.value;
+function capitalize(input) {
+    let value = input.value;
 
         if(value.length > 0) {
-            this.value = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
-        }
-    })
-});
+        input.value = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+    }
+}
+
 
 //-------RESET-------//
-form.addEventListener("reset", function () {
+function resetForm() {
     document.querySelectorAll(".input-group input, .input-group textarea").forEach(function(input){
         input.classList.remove("active");
     });
@@ -174,7 +170,7 @@ form.addEventListener("reset", function () {
     document.querySelector(".search-flex").style.display = "flex";
     document.querySelector(".table-container").style.display = "block";
     
-})
+}
 
 //-------CHECKBOX OPTIONAL-------//
 const aboutCheck = document.getElementById("enableAboutMe");
@@ -185,18 +181,21 @@ const characterCount = document.getElementById("characterCount");
 
 aboutSection.style.display = "none";
 
-aboutCheck.addEventListener("change", function () {
-    if (this.checked) {
+function toggleAboutSection() {
+    const checkbox = document.getElementById("enableAboutMe");
+
+    if (checkbox.checked) {
         aboutSection.style.display = "block";
     } else {
         aboutSection.style.display = "none";
         document.getElementById("aboutMe").value = "";
     }
-});
+};
 
-aboutMe.addEventListener("input", function () {
-    characterCount.textContent = this.value.length + " / 1024";
-});
+function updateCharacterCount () {
+    const text = document.getElementById("aboutMe");
+    characterCount.textContent = text.value.length + " / 1024";
+};
 
 //------- BIRTH DATE -------//
 document.getElementById("birthDate").max = new Date().toISOString().split("T")[0];
@@ -224,17 +223,6 @@ function showError(id, message) {
     document.getElementById(id).textContent = message;
 }
 
-
-document.getElementById("firstName").addEventListener("blur", validateFirstName);
-document.getElementById("middleName").addEventListener("blur", validateMiddleName);
-document.getElementById("lastName").addEventListener("blur", validateLastName);
-document.getElementById("email").addEventListener("blur", validateEmail);
-document.getElementById("mobile").addEventListener("blur", validateMobile);
-document.getElementById("birthDate").addEventListener("change", validateBirthDate);
-document.querySelectorAll('input[name="gender"]').forEach(radio =>
-    radio.addEventListener("change", validateGender)
-)
-document.getElementById("aboutMe").addEventListener("blur", validateAboutMe);
 
 //-------------CRUD------------------//
 
