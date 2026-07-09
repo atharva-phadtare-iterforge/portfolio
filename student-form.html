@@ -13,23 +13,23 @@
         <div class="form-container">
             <h2>Student Registration Form</h2>
             <p>Please fill in the form</p>
-            <form id="student-form">
+            <form id="student-form" onsubmit="submitForm(event)" onreset="resetForm()">
                 <div class="input-group">
-                    <input type="text" id="firstName" autocomplete="off" placeholder=" ">
+                    <input type="text" id="firstName" autocomplete="off" placeholder=" " onblur="validateFirstName()" oninput="capitalize(this)">
                     <label for="firstName">First Name<span>*</span></label>
 
                     <small class="error" id="firstNameError"></small>
                 </div>
 
                 <div class="input-group">
-                    <input type="text" id="middleName"  autocomplete="off" placeholder=" " >
+                    <input type="text" id="middleName"  autocomplete="off" placeholder=" " onblur="validateMiddleName()" oninput="capitalize(this)">
                     <label for="middleName">Middle Name<span>*</span></label>
 
                     <small class="error" id="middleNameError"></small>
                 </div>
 
                 <div class="input-group">
-                    <input type="text" id="lastName" autocomplete="off" placeholder=" " >
+                    <input type="text" id="lastName" autocomplete="off" placeholder=" " onblur="validateLastName()" oninput="capitalize(this)">
                     <label for="lastName">Last Name<span>*</span></label>
 
                     <small class="error" id="lastNameError"></small>
@@ -41,10 +41,10 @@
 
                     <div class="radio-group">
                         <label class="radio-label" >
-                        <input type="radio" id="male" name="gender" value="Male" >Male
+                        <input type="radio" id="male" name="gender" value="Male" onchange="validateGender()">Male
                         </label>
                         <label class="radio-label">
-                        <input type="radio" id="female" name="gender" value="Female">Female
+                        <input type="radio" id="female" name="gender" value="Female" onchange="validateGender()">Female
                         </label>
                     </div>
 
@@ -52,21 +52,21 @@
                 </div>
 
                 <div class="input-group">
-                    <input type="email" id="email" autocomplete="off" placeholder=" ">
+                    <input type="email" id="email" autocomplete="off" placeholder=" " onblur="validateEmail()" >
                     <label for="email">Email<span>*</span></label>
 
                     <small class="error" id="emailError" ></small>
                 </div>
 
                 <div class="input-group">
-                    <input type="tel" id="mobile" autocomplete="off" placeholder=" " maxlength="10" pattern="[0-9]{10}" >
+                    <input type="tel" id="mobile" autocomplete="off" placeholder=" " maxlength="10" pattern="[0-9]{10}" onblur="validateMobile()">
                     <label for="mobile">Mobile Number<span>*</span></label>
 
                     <small class="error" id="mobileError"></small>
                 </div>
 
                 <div class="input-group">
-                    <input type="date" id="birthDate" autocomplete="off" placeholder=" " >
+                    <input type="date" id="birthDate" autocomplete="off" placeholder=" " onchange="validateBirthDate()">
                     <label class="date-label" for="birthDate">Birth Date<span>*</span></label>
 
                     <small class="error" id="birthDateError"></small>
@@ -74,13 +74,13 @@
 
                 <div class="about-toggle">
                 <label class="checkbox-label">
-                    <input type="checkbox" id="enableAboutMe">
+                    <input type="checkbox" id="enableAboutMe" onchange="toggleAboutSection()" >
                     Add About Me
                 </label>
 
                 <div class="input-group aboutCheck">    
                     <div id="aboutSection">
-                    <textarea id="aboutMe" rows="8" maxlength="1024" placeholder=" "></textarea>
+                    <textarea id="aboutMe" rows="8" maxlength="1024" placeholder=" "onblur="validateAboutMe()" oninput="updateCharacterCount()"></textarea>
                     <label for="aboutMe"></label>
                     
                     <div class="about-footer">
@@ -97,21 +97,30 @@
                 </div>
         </form>
     </div>
+        <div class="search-flex">
+            <img src="./icons/logo.jpg" class="logo-sms" />
+            <div class="search-box input-group">
+                <input type="text"  id="search" placeholder=" " onkeyup="searchStudent()" >
+                <label for="search">Search</label>
+            </div>
         <div class="add-button">
-        <button class="add-btn" onclick="create()">Add Student</button>
+        <button class="add-btn" onclick="create()"><span>Add Student</span> <svg xmlns="http://w3.org" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+  <path d="M19 11h-6V5c0-.6-.4-1-1-1s-1 .4-1 1v6H5c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1v-6h6c.6 0 1-.4 1-1s-.4-1-1-1z"/>
+</svg></button>
+        </div>
         </div>
 
         <div class="table-container">
             <table>
                 <thead>
                     <th>Sr.</th>
-                    <th>First Name</th>
+                    <th id="firstNameHeader" onclick="sortTable('firstName', this)">First Name</th>
                     <th>Middle Name</th>
-                    <th>Last Name</th>
-                    <th>Gender</th>
-                    <th>Email ID</th>
-                    <th>Mobile Number</th>
-                    <th>DOB</th>
+                    <th id="lastNameHeader" onclick="sortTable('lastName', this)">Last Name</th>
+                    <th id="genderHeader" onclick="sortTable('gender', this)">Gender</th>
+                    <th id="emailHeader" onclick="sortTable('email', this)">Email ID</th>
+                    <th id="mobileHeader" onclick="sortTable('mobile', this)">Mobile Number</th>
+                    <th id="birthDateHeader" onclick="sortTable('birthDate', this)">DOB</th>
                     <th>About Me</th>
                     <th>Actions</th>
                 </thead>
@@ -119,6 +128,22 @@
 
                 </tbody>
             </table>
+            <div id="pagination"></div>
+        </div>
+    </div>
+
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Confirmation</h3>
+
+            <p id="modalMessage">
+                Are you Sure?
+            </p>
+
+            <div class="modal-button">
+                <button id="yesBtn">Yes</button>
+                <button id="noBtn">No</button>
+            </div>
         </div>
     </div>
 
