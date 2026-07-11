@@ -17,17 +17,25 @@
             <button type="submit" id="searchButton" onclick="searchLocation()">Search</button>
     </div>
     <div class="results">
-        <h4 id="result-city"></h4>
-        <div class="result-container">
+        <div class="result-container" id="resultsCard">
+            <div class="card-overlay"></div>
             <div class="icon-flex">
                 <div>
+                    <h4 id="result-city"></h4>
                     <h4 id="temperature">35 °C</h4>
                     <h5 id="temperature-max">41 °C</h5>
                     <h5 id="temperature-min">28 °C</h5>
                 </div>
-            <img id="temperature-icon" alt="weather icon" />
+            <div>
+                <img id="temperature-icon" alt="weather icon" />
+                <h5 id="result-description" class="main-desc"></h5>
+            </div>
             </div>
         </div>
+    </div>
+    <div id="loading" class="loading-container">
+        <div class="spinner"></div>
+        <p>Loading...</p>
     </div>
     <h2 style="text-align: center; margin-top: 30px;">7-Day Forecast</h2>
     <div id="forecast-container"></div>
