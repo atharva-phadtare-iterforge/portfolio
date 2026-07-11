@@ -10,11 +10,27 @@ const temperatureMax = document.getElementById("temperature-max");
 const temperatureIcon = document.getElementById("temperature-icon");
 const container = document.getElementById("forecast-container");
 const bgColor = document.querySelector(".icon-flex");
+const cityNameDisplay = document.getElementById("result-city");
+const resultsCard = document.getElementById("resultsCard");
+const loadingSpinner = document.getElementById("loading");
+const descriptionDisplay = document.getElementById("result-description");
+
+window.addEventListener("DOMContentLoaded", () => {
+  const savedLastLocation = sessionStorage.getItem("lastWeatherLocation");
+  
+  if (savedLastLocation) {
+    searchLocation(savedLastLocation);
+  } else {
+    searchLocation("Mumbai");
+  }
+});
 
 
-function searchLocation() {
-  const location = locationInput.value ? locationInput.value.trim() : "";
+function searchLocation(forcedLocationName = null) {
+  const location = forcedLocationName || (locationInput.value ? locationInput.value.trim() : "");
+
   if (location) {
+    sessionStorage.setItem("lastWeatherLocation", location);
     const cacheKey = location.toLowerCase();
     const cachedData = sessionStorage.getItem(cacheKey);
 
@@ -26,18 +42,26 @@ function searchLocation() {
       const timeDifference = (currentTime - savedResult.timestamp) / (1000 * 60);
 
       if (timeDifference < 60) {
-        renderWeatherData(savedResult.weatherData);
+        renderWeatherData(savedResult.weatherData, savedResult.cityName || location);
       } else {
         sessionStorage.removeItem(cacheKey);
+        startLoadingState();
         fetchCoords(location);
       }
     } else {
       console.log(`No cache found. Fetching fresh data for ${location}.`);
+      startLoadingState();
       fetchCoords(location);
     }
   } else {
     console.log("Please enter valid Location");
   }
+}
+
+function startLoadingState() {
+  if (loadingSpinner) loadingSpinner.style.display = "flex";
+  if (resultsCard) resultsCard.style.display = "none";
+  if (container) container.innerHTML = "";
 }
 
 // Fetching Latitude and Longitude using API
@@ -59,16 +83,41 @@ function fetchCoords(location) {
         const longitude = firstMatch.longitude;
         const cityName = firstMatch.name;
 
-        fetchTemperature(latitude, longitude, location);
+        fetchTemperature(latitude, longitude, location, cityName);
       } else {
         console.log("No locations found with that name.");
+        if (temperatureIcon) temperatureIcon.src = "weather_icons/sorry.png";
+        if (loadingSpinner) loadingSpinner.style.display = "none";
+        if (resultsCard) resultsCard.style.display = "none";
+        if (container) {
+          container.innerHTML = `
+            <div class="error">
+              <img src="weather_icons/sorry.png" alt="Sorry" class="error-image" />
+              <p class="error-text">No location found</p>
+            </div>
+          `;
+        }
       }
     })
+    .catch((error) => {
+      console.error("Error fetching coordinates:", error);
+      if (temperatureIcon) temperatureIcon.src = "weather_icons/sorry.png";
+      if (loadingSpinner) loadingSpinner.style.display = "none";
+      if (resultsCard) resultsCard.style.display = "none";
+        if (container) {
+          container.innerHTML = `
+            <div class="error">
+              <img src="weather_icons/sorry.png" alt="Sorry" class="error-image" />
+              <p class="error-text">No location found</p>
+            </div>
+          `;
+        }
+    });
 }
 
 // Fetching temperature using API
-function fetchTemperature(latitude, longitude, originalLocationName) {
-  const weatherUrl = `${weatherApiUrl}?latitude=${latitude}&longitude=${longitude}&current=temperature_2m&daily=temperature_2m_max,temperature_2m_min,temperature_2m_mean&timezone=auto&forecast_days=7&current_units=temperature_2m`;
+function fetchTemperature(latitude, longitude, originalLocationName, cityName) {
+  const weatherUrl = `${weatherApiUrl}?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,temperature_2m_mean,weather_code&timezone=auto&forecast_days=7&current_units=temperature_2m`;
 
   fetch(weatherUrl)
     .then((response) => {
@@ -83,39 +132,82 @@ function fetchTemperature(latitude, longitude, originalLocationName) {
 
       const sessionData = {
         weatherData: data,
-        timestamp: Date.now()
+        timestamp: Date.now(),
+        cityName: cityName,
       };
       sessionStorage.setItem(cacheKey, JSON.stringify(sessionData));
 
-      renderWeatherData(data);
+      renderWeatherData(data, cityName);
     })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+      if (temperatureIcon) temperatureIcon.src = "weather_icons/sorry.png";
+      if (loadingSpinner) loadingSpinner.style.display = "none";
+      if (resultsCard) resultsCard.style.display = "none";
+      if (container) {
+        container.innerHTML = `
+          <div class="error">
+            <img src="weather_icons/sorry.png" alt="Sorry" class="error-image" />
+            <p class="error-text">No location found</p>
+          </div>
+        `;
+      }
+    });
 }
 
 
-function renderWeatherData(data) {
+function renderWeatherData(data, cityName) {
+
+  if (loadingSpinner) loadingSpinner.style.display = "none";
+  if(resultsCard) resultsCard.style.display = "block";
+  
   const currentTemp = data.current.temperature_2m;
   const minTemp = data.daily.temperature_2m_min[0]; 
   const maxTemp = data.daily.temperature_2m_max[0];
+  const currentCode = data.current.weather_code;
   
   const unit = data.current_units ? data.current_units.temperature_2m : "°C";
 
   if (temperature) temperature.textContent = `${currentTemp} ${unit}`;
   if (temperatureMin) temperatureMin.textContent = `Min: ${minTemp} ${unit}`;
   if (temperatureMax) temperatureMax.textContent = `Max: ${maxTemp} ${unit}`;
+  cityNameDisplay.textContent = cityName;
 
-  function getWeatherStyle(temp) {
-    if (temp < 10) return { color: '#E5EFF2', icon: "weather_icons/cold.png" };
-    if (temp >= 10 && temp < 15) return { color: '#9DB4C0', icon: "weather_icons/snow.png" };
-    if (temp >= 15 && temp < 20) return { color: '#C7E5ED', icon: "weather_icons/warm.png" };
-    if (temp >= 20 && temp < 25) return { color: '#F5ECD7', icon: "weather_icons/wind.png" };
-    if (temp >= 25 && temp < 30) return { color: '#F9D8AD', icon: "weather_icons/hot.png" };
-    if (temp >= 30 && temp < 35) return { color: '#FFB86F', icon: "weather_icons/very-hot.png" };
-    if (temp >= 35 && temp < 40) return { color: '#FF8C42', icon: "weather_icons/scorching-sun.png" };
-    return { color: '#FF3C38', icon: "weather_icons/blazing.png" };
+function getWeatherStyle(code) {
+    const codeMap = {
+      0: { text: "Clear sky", color: '#E5EFF2', icon: "weather_icons/warm.png" },
+      1: { text: "Partly cloudy", color: '#C7E5ED', icon: "weather_icons/wind.png" },
+      2: { text: "Partly cloudy", color: '#C7E5ED', icon: "weather_icons/wind.png" },
+      3: { text: "Partly cloudy", color: '#C7E5ED', icon: "weather_icons/wind.png" },
+      4: { text: "Overcast", color: '#9DB4C0', icon: "weather_icons/cold.png" },
+      45: { text: "Foggy", color: '#9DB4C0', icon: "weather_icons/cold.png" },
+      48: { text: "Foggy", color: '#9DB4C0', icon: "weather_icons/cold.png" },
+      51: { text: "Drizzle", color: '#F5ECD7', icon: "weather_icons/snow.png" },
+      53: { text: "Drizzle", color: '#F5ECD7', icon: "weather_icons/snow.png" },
+      55: { text: "Drizzle", color: '#F5ECD7', icon: "weather_icons/snow.png" },
+      61: { text: "Rain", color: '#F9D8AD', icon: "weather_icons/hot.png" },
+      63: { text: "Rain", color: '#F9D8AD', icon: "weather_icons/hot.png" },
+      65: { text: "Rain", color: '#F9D8AD', icon: "weather_icons/hot.png" },
+      71: { text: "Snow", color: '#E5EFF2', icon: "weather_icons/blazing.png" },
+      73: { text: "Snow", color: '#E5EFF2', icon: "weather_icons/blazing.png" },
+      75: { text: "Snow", color: '#E5EFF2', icon: "weather_icons/blazing.png" },
+      80: { text: "Rain showers", color: '#FFB86F', icon: "weather_icons/very-hot.png" },
+      81: { text: "Rain showers", color: '#FFB86F', icon: "weather_icons/very-hot.png" },
+      82: { text: "Rain showers", color: '#FFB86F', icon: "weather_icons/very-hot.png" },
+      95: { text: "Thunderstorm", color: '#FF8C42', icon: "weather_icons/scorching-sun.png" }
+    };
+
+    const defaultStyle = { text: "Unknown weather", color: '#FF3C38', icon: "weather_icons/sorry.png" };
+    return codeMap[code] || defaultStyle;
+  }
+
+  const mainStyle = getWeatherStyle(currentCode);
+
+  if (descriptionDisplay) {
+    descriptionDisplay.textContent = mainStyle.text;
   }
 
   if (bgColor && temperatureIcon) {
-    const mainStyle = getWeatherStyle(currentTemp);
     bgColor.style.backgroundColor = mainStyle.color;
     temperatureIcon.src = mainStyle.icon;
   }
@@ -128,17 +220,19 @@ function renderWeatherData(data) {
       const dayMax = data.daily.temperature_2m_max[index];
       const dayMin = data.daily.temperature_2m_min[index];
       const dayAvg = data.daily.temperature_2m_mean[index];
+      const dayCode = data.daily.weather_code[index];
 
       const dateObject = new Date(date);
       const dayName = new Intl.DateTimeFormat('en-IN', { weekday: 'long' }).format(dateObject);
 
-      const dayStyle = getWeatherStyle(dayAvg);
+      const dayStyle = getWeatherStyle(dayCode);
 
       allCardsHtml += `
           <div class="weather-card" style="background-color: ${dayStyle.color};">
               <h3>${dayName}</h3>
               <div class="card-icon-flex">
                   <div>${dayAvg} ${unit}</div>
+                  <p>${dayStyle.text}</p> 
                   <img src="${dayStyle.icon}" alt="weather icon" class="forecast-icon" />
               </div>
               <div>
